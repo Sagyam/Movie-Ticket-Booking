@@ -12,7 +12,7 @@
 #include <time.h>
 using namespace std;
 
-// List of all functiona
+// List of all functions
 void bye();
 void error();
 
