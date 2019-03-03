@@ -1,6 +1,7 @@
 
 #include "pch.h"
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <conio.h>
 #include <string>
@@ -10,6 +11,11 @@
 #include <process.h>
 #include <time.h>
 using namespace std;
+
+// List of all functiona
+void bye();
+void error();
+
 
 int main()
 {
@@ -21,35 +27,65 @@ int main()
 	//Using time header file
 	{time_t t = time(NULL);
 	tm* timePtr = localtime(&t);
-	cout << "Time of the computer presently:";
-	cout << "seconds= " << timePtr->tm_sec << endl;
-	cout << "minutes = " << timePtr->tm_min << endl;
-	cout << "hours = " << timePtr->tm_hour << endl;
-	cout << "day of month = " << timePtr->tm_mday << endl;
-	cout << "month of year = " << timePtr->tm_mon << endl;
-	cout << "year = " << timePtr->tm_year + 1900 << endl;
-	cout << "weekday = " << timePtr->tm_wday << endl;
+	cout << "**********************************************************************************************************************"<<endl;
+	cout << "**********************************************************************************************************************" << endl;
+	cout << "\t\t\t\t WELCOME TO THE TICKET BOOKING SYSTEM"														 <<endl;
+	cout << "Time "                            << timePtr->tm_hour <<":" << timePtr->tm_min;
+	cout << "\t\t\t\t\t\t\t\t\t\t\t\t   Date " << timePtr->tm_mday << "/" << timePtr->tm_mon << "/" << timePtr->tm_year + 1900 << endl;
+	cout << endl;
+	cout << "<1>\t\t\t\t  Login Menu"																						    << endl;
+	cout << "<2>\t\t\t\t  Movie Timings"																							<< endl;
+	cout << "<3>\t\t\t\t  Recieving Ticket"																						<< endl;
+	cout << "<4>\t\t\t\t  For Information"																						<< endl;
+	cout << "<5>\t\t\t\t  DTCard Registration"																					 << endl;
+	cout << "<6>\t\t\t\t  Exit \n\n";
+	cout << "Enter Your Choice :" << "\t";
+	cin >> ent;
+	cout << "**********************************************************************************************************************" << endl;
+	cout << "**********************************************************************************************************************" << endl;
+	switch (ent)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		bye();
+		break;
+	default:
+		error();
+		break;
+	}
 
 	}
+}
+void login()
+{
+
+}
+void error()
+{
+	cout << "Enter a valid choice";
+}
+void bye()
+{
+	system("CLS");
+
+	cout << "**********************************************************************************************************************" << endl;
+	cout << "**********************************************************************************************************************" << endl;
+	cout << "\t\t\t\t THANK YOU FOR USING OUR SYSYTEM";
+	cout << "\n\n\n\n\n\n";
+	cout << "Press any key to quit"																									<<  endl;
+	cout << "**********************************************************************************************************************" << endl;
+	cout << "**********************************************************************************************************************" << endl;
+	getch();
 }
 
 
 
-
-
-
-
-
-
-
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
