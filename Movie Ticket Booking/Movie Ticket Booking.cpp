@@ -17,24 +17,41 @@ void bye();
 void error();
 string login();
 void commingsoon();
+void editupcommingsoon();
+void registration();
 
+//Some global variables
+string username;
+
+//Some Classes used in this program
+class person
+{
+public:
+	string name,password,address;
+	int mobile_number;
+	void getdata()
+	{
+		cout << "Enter your Name" <<endl;
+		cin >> name;
+		cout << "Enter your Address" <<endl;
+		cin >> address;
+		cout << "Enter your Mobile number" <<endl;
+		cin >> mobile_number;
+	}
+};
 class movie
 {
 public:
-	char name[128];
-	movie()
-	{
-		strcpy(name, "\0");
-	}
-	void show()
-	{
-		cout << name<<	endl;
-	}
-};
+	string name;
 
+};
 int main()
-{	
-	string username = login();
+{
+	
+		if (username.empty())
+		{
+			username = login();
+		}
 	system("CLS");
 
 	int choice;
@@ -58,13 +75,14 @@ int main()
 	switch (choice)
 	{
 	case 1:
-		
+		void editupcommingsoon();
 		break;
 	case 2:
 	 commingsoon();
+	 main();
 		break;
 	case 3:
-
+		registration();
 		break;
 	case 4:
 
@@ -78,6 +96,19 @@ int main()
 	}
 
 	}
+}
+void registration()
+{
+	fstream file;
+	person user;
+	file.open("userlist.dat", ios::out | ios::binary);
+	user.getdata();
+	file.write(reinterpret_cast<char*>(&user), sizeof(user));
+	cout << "Registration Sucessful" << endl;
+	file.close();
+	getch();
+	login();
+
 }
 string login()
 {
@@ -104,21 +135,35 @@ void commingsoon()
 {
 	fstream file;
 	movie movie;
-	file.open("commingsoon.dat", ios::in | ios::out | ios::binary);
+	file.open("upcomming_movies.dat", ios::in| ios::binary);
 	if(!file)
 	{
-		cout << "File not found please contact admin";
+		cout << "Sorry No Upcomming Movies";
 		getch();
-		exit(0);
+		main();
 
 	}
 	file.seekg(0,ios::beg);
+	
 	while (!file.eof())
 	{
-		file.read(reinterpret_cast<char*>(&movie), sizeof(movie));
-		movie.show();
+		file.read(reinterpret_cast<char*>(&movie.name), sizeof(movie.name));
+		cout << movie.name <<endl;
 	}
 	file.close();
+	getch();
+}
+void editupcommingsoon()
+{
+	fstream file;
+	movie movie;
+	file.open("upcomming_movies.dat", ios::out | ios::binary);
+	file.seekg(0, ios::beg);	
+	cout << "Enter movie name " << endl;
+	cin >> movie.name;
+	file.write(reinterpret_cast<char*>(&movie.name), sizeof(movie.name));
+	file.close();
+	getch();
 }
 void error()
 {
@@ -137,6 +182,7 @@ void bye()
 	cout << "**********************************************************************************************************************" << endl;
 	getch();
 }
+
 
 
 
